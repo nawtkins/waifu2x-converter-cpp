@@ -1040,7 +1040,7 @@ int main(int argc, char** argv)
 
 	w2xconv_fini(converter);
 	
-	if (numFilesProcessed == numErrors)
+	if ((numErrors > 0) && (numFilesProcessed == 0))
 	{
 		//Possibly log an error here?
 		//printf("All requested files errored.")
