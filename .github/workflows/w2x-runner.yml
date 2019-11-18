@@ -19,6 +19,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
+    - name: cuda-dep-install
+      run: choco install cuda
     - name: opencv-dep-install
       run: choco install opencv
     - name: opencl-dep-install
@@ -36,9 +38,23 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: waifu2x-converter-cpp.exe
-        path: _build\Release\waifu2x-converter-cpp.exe
+        path: _build/out/Release/waifu2x-converter-cpp.exe
     - name: upload build artifact w2xc.dll
       uses: actions/upload-artifact@v1
       with:
         name: w2xc.dll
-        path: _build\Release\w2xc.dll
+        path: _build/out/Release/w2xc.dll
+  linux-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: apt-update
+      run: sudo apt update
+    - name: opencl-dep
+      run: sudo apt -y install ocl-icd-opencl-dev
+    - name: opencv-dep
+      run: sudo apt -y install libopencv-dev libopencv-imgcodecs-dev libopencv-imgproc-dev libopencv-core-dev
+    - name: run-cmake
+      run: cmake .
+    - name: build
+      run: make
