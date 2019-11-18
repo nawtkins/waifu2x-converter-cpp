@@ -19,8 +19,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - name: cuda-dep-install
-      run: choco install cuda
     - name: opencv-dep-install
       run: choco install opencv
     - name: opencl-dep-install
