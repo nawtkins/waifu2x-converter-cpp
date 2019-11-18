@@ -28,6 +28,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#if defined(_MSC_VER) && (defined(_M_X64) || defined(_M_AMD64) || defined(_M_IX86))
+#include <intrin.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
