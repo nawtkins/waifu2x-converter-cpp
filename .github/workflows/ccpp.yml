@@ -10,7 +10,7 @@ jobs:
     - name: opencl-dep
       run: sudo apt -y install ocl-icd-opencl-dev
     - name: opencv-dep
-      run: sudo apt -y install libopencv-dev
+      run: sudo apt -y --fix-missing install libopencv-dev
     - name: configure
       run: cmake .
     - name: make
