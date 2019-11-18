@@ -6,11 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@
+    - name: apt-update
+      run: sudo apt update
     - name: opencl-dep
       run: sudo apt -y install ocl-icd-opencl-dev
     - name: opencv-dep
-      run: sudo apt -y --fix-missing install libopencv-dev
+      run: sudo apt -y install libopencv-core-dev libopencv-imgproc-dev libopencv-ocl-dev
     - name: configure
       run: cmake .
     - name: make
