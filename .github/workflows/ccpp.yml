@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@
+    - uses: actions/checkout@master
     - name: apt-update
       run: sudo apt update
     - name: opencl-dep
