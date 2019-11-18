@@ -1,33 +1,22 @@
-name: C/C++ CI
+name: w2x-runner
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+  release:
+    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+    types: [published, created, edited]
 
 jobs:
   windows-build:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - name: opencv-dep
-      run: choco install opencv
     - name: opencl-dep
       run: git clone https://github.com/KhronosGroup/OpenCL-Headers opencl
     - name: run-cmake
       run: cmake . -DCMAKE_BUILD_TYPE=Debug -DENABLE_UNICODE=ON -DCMAKE_GENERATOR="Visual Studio 16 2019" -A x64 -DOPENCV_PREFIX="C:/tools/opencv/build" -DOpenCL_INCLUDE_DIR="opencl/" -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1"
     - name: msbuild
       run: |
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
         msbuild waifu2xcpp.sln /p:Configuration=Debug /p:Platform=x64 -m
-  linux-build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: apt-update
-      run: sudo apt update
-    - name: opencl-dep
-      run: sudo apt -y install ocl-icd-opencl-dev
-    - name: opencv-dep
-      run: sudo apt -y install libopencv-dev libopencv-imgcodecs-dev libopencv-imgproc-dev libopencv-core-dev
-    - name: run-cmake
-      run: cmake .
-    - name: build
-      run: make
