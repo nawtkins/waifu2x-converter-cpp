@@ -19,15 +19,24 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - name: cuda-dep-install
-      run: choco install cuda
     - name: opencv-dep-install
       run: choco install opencv
     - name: opencl-dep-install
       run: git clone https://github.com/KhronosGroup/OpenCL-Headers opencl
     - name: cmake
-      run: cmake . -DCMAKE_BUILD_TYPE=Debug -DENABLE_UNICODE=ON -DCMAKE_GENERATOR="Visual Studio 16 2019" -A x64 -DOPENCV_PREFIX="C:/tools/opencv/build" -DOpenCL_INCLUDE_DIR="opencl/" -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1"
+      run: cmake . -DCMAKE_BUILD_TYPE=Release -DENABLE_UNICODE=ON -DCMAKE_GENERATOR="Visual Studio 16 2019" -A x64 -DOPENCV_PREFIX="C:/tools/opencv/build" -DOpenCL_INCLUDE_DIR="opencl/" -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1"
     - name: vcvarsall
       run: '"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat"'
     - name: msbuild
-      run: msbuild waifu2xcpp.sln /p:Configuration=Debug /p:Platform=x64 -m
+      run: msbuild waifu2xcpp.sln /p:Configuration=Release /p:Platform=x64 -m
+    - name: upload build artifact waifu2x-converter-cpp.exe
+      uses: actions/upload-artifact@v1
+      with:
+        name: waifu2x-converter-cpp.exe
+        path: out/Release/waifu2x-converter-cpp.exe
+    - name: upload build artifact w2xc.dll
+      uses: actions/upload-artifact@v1
+      with:
+        name: w2xc.dll
+        path: out/Release/w2xc.dll
+
