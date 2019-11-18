@@ -7,6 +7,10 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
+    - name: cuda-dep
+      run: choco install cuda
+    - name: testd
+      run: dir C:\tools
     - name: opencv-dep
       run: choco install opencv
     - name: opencl-dep
