@@ -32,8 +32,16 @@
 #include <map>
 #include <stdio.h>
 #include <stdlib.h>
-#include <filesystem>
 #include <algorithm>
+
+// Support ancient versions of GCC still used in stubborn distros.
+#if __GNUC__ < 8
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#else
+#include <filesystem>
+namespace fs = std::filesystem;
+#endif
 
 #include "tclap/CmdLine.h"
 #include "sec.hpp"
