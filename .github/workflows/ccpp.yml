@@ -3,23 +3,12 @@ name: C/C++ CI
 on: [push, pull_request]
 
 jobs:
-  opencv:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: opencv/opencv@4.1.2
-    - name: configure
-      run: cmake .
-    - name: make
-      run: make
-    - name: make install
-      run: make
-
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: deptest
-      run: apt install ocl-icd-opencl-dev
+      run: sudo apt install ocl-icd-opencl-dev
     - name: configure
       run: cmake .
     - name: make
