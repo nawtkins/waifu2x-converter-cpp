@@ -9,6 +9,7 @@
 //#if (defined __GNUC__) || (defined __clang__)
 #ifndef _WIN32
 #include <cpuid.h>
+#include <intrin.h>
 #endif
 #endif // X86OPT
 
