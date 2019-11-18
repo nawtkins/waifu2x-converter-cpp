@@ -18,7 +18,7 @@ jobs:
   windows-build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@masterv
+    - uses: actions/checkout@master
     - name: opencl-dep-install
       run: git clone https://github.com/KhronosGroup/OpenCL-Headers opencl
     - name: cmake
