@@ -9,6 +9,8 @@ jobs:
     - uses: actions/checkout@master
     - name: apt-update
       run: sudo apt update
+    - name: apt-add-mirror
+      run: sudo echo "deb http://security.ubuntu.com/ubuntu bionic-security main universe" >> /etc/apt/sources.list
     - name: opencl-dep
       run: sudo apt -y install ocl-icd-opencl-dev
     - name: opencv-dep
