@@ -20,4 +20,4 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: run-cmake
-      run: \"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat\" x64
+      run: '"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat x64'
