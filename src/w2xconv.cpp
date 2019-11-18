@@ -29,10 +29,6 @@
 #include <limits.h>
 #include <sstream>
 
-#if defined(_MSC_VER) && (defined(_M_X64) || defined(_M_AMD64) || defined(_M_IX86))
-#include <intrin.h>
-#endif
-
 #include "w2xconv.h"
 #include "sec.hpp"
 #include "Buffer.hpp"
