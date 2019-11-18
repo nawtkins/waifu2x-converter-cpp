@@ -64,8 +64,6 @@ namespace fs = std::filesystem;
 #include <opencv2/opencv.hpp>
 #endif
 
-namespace fs = std::filesystem;
-
 
 class CustomFailOutput : public TCLAP::StdOutput
 {
