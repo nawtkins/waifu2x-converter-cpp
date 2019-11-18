@@ -3,17 +3,14 @@ name: C/C++ CI
 on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test-build:
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
-    - name: apt-update
-      run: sudo apt update
-    - name: opencl-dep
-      run: sudo apt -y install ocl-icd-opencl-dev
     - name: opencv-dep
-      run: sudo apt -y install libopencv-dev libopencv-imgcodecs-dev libopencv-imgproc-dev libopencv-core-dev
-    - name: configure
+      run: choco install opencv
+    - name: opencl-dep
+      run: git clone https://github.com/KhronosGroup/OpenCL-Headers opencl
+    - name: run-cmake
       run: cmake .
-    - name: make
-      run: make
+
