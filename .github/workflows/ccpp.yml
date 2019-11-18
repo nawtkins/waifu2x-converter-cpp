@@ -12,5 +12,5 @@ jobs:
     - name: opencl-dep
       run: git clone https://github.com/KhronosGroup/OpenCL-Headers opencl
     - name: run-cmake
-      run: cmake .
+      run: cmake . -DCMAKE_BUILD_TYPE=Debug -DENABLE_UNICODE=ON -DCMAKE_GENERATOR="Visual Studio 16 2019" -A x64 -DOPENCV_PREFIX="C:/tools/opencv/build" -DOpenCL_INCLUDE_DIR="opencl/"
 
