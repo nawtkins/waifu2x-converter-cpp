@@ -16,7 +16,7 @@ jobs:
     - name: run-cmake
       run: cmake . -DCMAKE_BUILD_TYPE=Debug -DENABLE_UNICODE=ON -DCMAKE_GENERATOR="Visual Studio 16 2019" -A x64 -DOPENCV_PREFIX="C:/tools/opencv/build" -DOpenCL_INCLUDE_DIR="opencl/" -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.1"
     - name: msbuild
-      run: msbuild waifu2xcpp.sln /p:Configuration=Debug /p:Platform=x64 -m
+      run: call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x64 && msbuild waifu2xcpp.sln /p:Configuration=Debug /p:Platform=x64 -m
   linux-build:
     runs-on: ubuntu-latest
     steps:
