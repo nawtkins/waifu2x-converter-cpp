@@ -9,6 +9,7 @@ output/
 out/
 release/
 debug/
+_build/
 src/*.o
 waifu2x-converter-cpp
 *.s
