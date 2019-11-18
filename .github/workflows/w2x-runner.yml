@@ -32,22 +32,13 @@ jobs:
         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
         msbuild waifu2xcpp.sln /p:Configuration=Release /p:Platform=x64 -m
       shell: cmd
-    - name: listdirs
-      run: dir _build
-      shell: cmd
-    - name: listdirs
-      run: dir _build/Release/
-      shell: cmd
-    - name: listdirs
-      run: dir .
-      shell: cmd
     - name: upload build artifact waifu2x-converter-cpp.exe
       uses: actions/upload-artifact@v1
       with:
         name: waifu2x-converter-cpp.exe
-        path: _build/out/Release/waifu2x-converter-cpp.exe
+        path: "_build\Release\waifu2x-converter-cpp.exe"
     - name: upload build artifact w2xc.dll
       uses: actions/upload-artifact@v1
       with:
         name: w2xc.dll
-        path: _build/out/Release/w2xc.dll
+        path: "_build\Release\w2xc.dll"
