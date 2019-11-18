@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: deptest
-      run: sudo apt install ocl-icd-opencl-dev
+    - name: opencl-dep
+      run: sudo apt -y install ocl-icd-opencl-dev
+    - name: opencv-dep
+      run: sudo apt -y install libopencv-dev
     - name: configure
       run: cmake .
     - name: make
